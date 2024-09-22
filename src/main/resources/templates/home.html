@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Open API Mini Project</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css" rel="stylesheet" />
+    <style>
+        /* Add custom styles for centering the heading and form */
+        .form-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 1rem;
+            background-color: #f9fafb; /* Light background color for the whole page */
+        }
+        .form-box {
+            background: white; /* Background color for the box */
+            border-radius: 8px; /* Rounded corners */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Shadow for 3D effect */
+            padding: 2rem; /* Padding inside the box */
+            width: 100%;
+            max-width: 500px; /* Max width of the box */
+            border: 1px solid #e5e7eb; /* Light border color */
+        }
+        .form-box h1 {
+            margin-bottom: 1.5rem;
+            font-size: 2rem;
+            color: #1f2937; /* Heading color */
+            text-align: center;
+        }
+        .response-message {
+            margin-top: 1rem;
+            padding: 1rem;
+            border: 1px solid #d1fae5; /* Light green border */
+            border-radius: 8px;
+            background-color: #f0fdf4; /* Light green background */
+            color: #065f46; /* Dark green text */
+        }
+    </style>
+</head>
+
+<body>
+    <div class="form-container">
+        <div class="form-box">
+            <h1>Open API Mini Project</h1>
+            <form data-th-action="@{/mistralAIgetResponse}" method="post" data-th-object="${query}">
+                <div class="mb-5">
+                    <label for="question" class="block mb-2 text-sm font-medium text-gray-900">Ask your question:</label>
+                    <textarea id="question" data-th-field="*{question}" rows="4" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Type your question here..." required></textarea>
+                </div>
+                <div class="flex gap-4">
+                    <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Submit</button>
+                </div>
+            </form>
+            <div th:if="${message}" class="response-message">
+                <p th:text="${message}"></p>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
+</body>
+</html>
